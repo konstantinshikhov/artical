@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Новости</h1>
+
 
 <!-- Main Content -->
 <div class="container">
@@ -11,8 +11,9 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             @forelse($articles as $article)
+
             <div class="post-preview">
-                <a href="{{route('articles.edit',$article)}}">
+                <a href="{{route('articles.edit',['id'=>$article->id])}}">
                     <h2 class="post-title">
                         {{$article->title}}
                     </h2>
@@ -21,8 +22,9 @@
                         {{$article->description}}
                     </h3>
 
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> {{$article->created_at}}</p>
+                <p class="post-meta">Posted by <a href="#">{{$article->created_user}}</a> {{$article->created_at}}</p>
             </div>
+                <hr>
             @empty
                 <div class="post-preview">Объявления отсутствуют</div>
             @endforelse
@@ -62,7 +64,7 @@
             <hr>
             <!-- Pager -->
             <ul class="pagination">
-               {{$articles->links()}}
+               {{--{{$articles->links()}}--}}
             </ul>
         </div>
     </div>

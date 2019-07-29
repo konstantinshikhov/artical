@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -14,8 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
+        $articles = DB::table('articles')->join('users','users.id','=','articles.created_by')->select('articles.*','users.name as created_user')->get();
+        // dd($articles);
         return view('articles.index',[
-            'articles' => Article::paginate(5)
+            'articles' => $articles
         ]);
     }
 
@@ -62,6 +65,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
         return view('articles.edit',[
            'article' => $article
         ]);

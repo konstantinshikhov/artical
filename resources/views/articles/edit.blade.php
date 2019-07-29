@@ -3,7 +3,7 @@
 @section('content')
     <h1>Create article</h1>
     <div class="container">
-        @if (!Auth::guest())
+        @if (!Auth::guest() && Auth::user()->id == $article->created_by)
             <form action="{{route('articles.destroy',$article)}}" method="post"
                   onsubmit="if(confirm('Удалить?')){return true}else{return false}">
                 <input type="hidden" name="_method" value="DELETE">
