@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = DB::table('articles')->join('users', 'users.id', '=', 'articles.created_by')->select('articles.*',
-            'users.name as created_user')->get();
+            'users.name as created_user')->paginate(5);
 
         return view('articles.index', [
             'articles' => $articles
@@ -68,11 +68,10 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-
         return view('articles.edit',[
-           'article' => $article
+           'article' => Article::find($id)
         ]);
     }
 

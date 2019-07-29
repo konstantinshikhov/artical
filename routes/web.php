@@ -19,11 +19,13 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/', 'ArticleController@index')->name('article');
 
-Route::get('/articles/{id}',function(){
-    die('hello');
-});
+//Route::get('/articles/{id}',function(){
+//    die('hello');
+//});
 //Route::resource('/articles','ArticleController');
 Route::group(['middleware'=>['auth']],function(){
+  Route::get('/articles/create','ArticleController@create');
+  Route::post('/articles/{id}/edit','ArticleController@edit');
   Route::resource('/articles','ArticleController');
  //  Route::match(['post','put','delete'],'/articles','ArticleController');
 });

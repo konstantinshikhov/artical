@@ -16,7 +16,7 @@
             @endif
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
-                    <a href="{{route('articles.edit',['id'=>$article->id])}}">
+                    <a href="#">
                         <h2 class="post-title">
                             {{$article->title}}
                         </h2>

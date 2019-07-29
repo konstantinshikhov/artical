@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Create article</h1>
+    <h1 class="text-center">Create article</h1>
     <div class="container">
         @if (!Auth::guest() && Auth::user()->id == $article->created_by)
             <form action="{{route('articles.destroy',$article)}}" method="post"
