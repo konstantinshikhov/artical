@@ -15,9 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = DB::table('articles')->join('users','users.id','=','articles.created_by')->select('articles.*','users.name as created_user')->get();
-        // dd($articles);
-        return view('articles.index',[
+        $articles = DB::table('articles')->join('users', 'users.id', '=', 'articles.created_by')->select('articles.*',
+            'users.name as created_user')->get();
+
+        return view('articles.index', [
             'articles' => $articles
         ]);
     }
@@ -52,10 +53,12 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        return view('articles.show',[
-           'article' => $article
+        $article = DB::table('articles')->join('users', 'users.id', '=', 'articles.created_by')->select('articles.*',
+            'users.name as created_user')->where('articles.id', $id)->get();
+        return view('articles.show', [
+            'article' => $article[0]
         ]);
     }
 

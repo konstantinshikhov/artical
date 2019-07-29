@@ -16,14 +16,17 @@
 Route::get('login', 'Auth\LoginController@login')->name('login');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
 Route::get('/', 'ArticleController@index')->name('article');
 
+Route::get('/articles/{id}',function(){
+    die('hello');
+});
+//Route::resource('/articles','ArticleController');
 Route::group(['middleware'=>['auth']],function(){
-   Route::resource('/articles','ArticleController');
+  Route::resource('/articles','ArticleController');
+ //  Route::match(['post','put','delete'],'/articles','ArticleController');
 });
 
-//Route::get('articles/{id}','ArticleController@show');
+Route::get('articles/{id}','ArticleController@show');
 
-Route::get('articles/{id}',function(){
-   die('hello');
-});

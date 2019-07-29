@@ -8,7 +8,11 @@
                     {{csrf_field()}}
                     <button class="btn btn-primary pull-right" type="submit">Edit</button>
                 </form>
-
+                <form action="{{route('articles.destroy',['id'=>$article->id])}}" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-primary pull-right" type="submit">Delete</button>
+                </form>
             @endif
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
