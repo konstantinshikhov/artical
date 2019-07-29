@@ -18,5 +18,10 @@ Auth::routes();
 Route::get('/', 'ArticleController@index')->name('article');
 Route::group(['middleware'=>['auth']],function(){
    Route::resource('/articles','ArticleController');
+});
 
+//Route::get('articles/{id}','ArticleController@show');
+
+Route::get('articles/{id}',function(){
+   die('hello');
 });

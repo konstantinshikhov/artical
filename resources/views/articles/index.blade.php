@@ -13,7 +13,7 @@
             @forelse($articles as $article)
 
             <div class="post-preview">
-                <a href="{{route('articles.edit',['id'=>$article->id])}}">
+                <a href="{{route('articles.show',['id'=>$article->id])}}">
                     <h2 class="post-title">
                         {{$article->title}}
                     </h2>
