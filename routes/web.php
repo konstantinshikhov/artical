@@ -12,10 +12,12 @@
 */
 
 
-Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
+//Auth::routes();
+Route::get('login', 'Auth\LoginController@login')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/', 'ArticleController@index')->name('article');
+
 Route::group(['middleware'=>['auth']],function(){
    Route::resource('/articles','ArticleController');
 });
