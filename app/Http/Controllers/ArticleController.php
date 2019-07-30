@@ -44,8 +44,11 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        Article::create($request->all());
-        return redirect()->route('articles.index');
+       $article = Article::create($request->all());
+       return redirect()->route('articles.show',[
+           'id'=>$article->id
+       ]);
+
     }
 
     /**
