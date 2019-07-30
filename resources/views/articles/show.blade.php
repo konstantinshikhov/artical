@@ -25,7 +25,8 @@
                         {{$article->description}}
                     </h3>
 
-                    <p class="post-meta">Posted by <a href="#">{{$article->created_user}}</a> {{$article->created_at}}</p>
+                    <p class="post-meta">Posted by <a href="#">{{$article->created_user}}</a> {{$article->created_at}}
+                    </p>
                 </div>
                 <hr>
             </div>

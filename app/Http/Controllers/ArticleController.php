@@ -15,9 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = DB::table('articles')->join('users', 'users.id', '=', 'articles.created_by')->select('articles.*',
-            'users.name as created_user')->paginate(5);
-
+        $articles = DB::table('articles')
+            ->join('users', 'users.id', '=', 'articles.created_by')
+            ->select('articles.*', 'users.name as created_user')
+            ->paginate(5);
         return view('articles.index', [
             'articles' => $articles
         ]);
@@ -30,15 +31,15 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.create',[
-            'article'=> ''
+        return view('articles.create', [
+            'article' => ''
         ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,7 +51,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Article $article
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,26 +66,26 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Article $article
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        return view('articles.edit',[
-           'article' => Article::find($id)
+        return view('articles.edit', [
+            'article' => Article::find($id)
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Article  $article
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Article $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
-        // исключение поля slug  из перезаписи
+        $article = Article::find($id);
         $article->update($request->except('created_by'));
         return redirect()->route('articles.index');
     }
@@ -92,12 +93,13 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Article  $article
+     * @param  \App\Article $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        $article->delete();
+        $article = Article::find($id);
+        $article->delete($id);
         return redirect()->route('articles.index');
     }
 }

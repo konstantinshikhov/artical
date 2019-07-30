@@ -12,7 +12,13 @@
                 @forelse($articles as $article)
 
                     <div class="post-preview">
-                        <a href="{{route('articles.show',['id'=>$article->id])}}">
+                        @if(!Auth::guest() && Auth::user()->id == $article->created_by)
+                            <form action="{{route('articles.edit',['id'=>$article->id])}}" method="post">
+                                {{csrf_field()}}
+                                <button class="btn btn-primary pull-right" type="submit">Edit</button>
+                            </form>
+                        @endif
+                        <a href="{{route('show',['id'=>$article->id])}}">
                             <h2 class="post-title">
                                 {{$article->title}}
                             </h2>

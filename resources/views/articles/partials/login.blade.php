@@ -4,7 +4,8 @@
         <label for="name" class="col-md-4 control-label">Login</label>
         <div class="col-md-6">
             <input id="name" type="text" name="name" value="" required="required" autofocus="autofocus"
-                   class="form-control">
+                   class="form-control ">
+
         </div>
     </div>
 
@@ -15,7 +16,8 @@
         </div>
     </div>
 
-    <div class="form-group"><div class="col-md-8 col-md-offset-4">
+    <div class="form-group">
+        <div class="col-md-8 col-md-offset-4">
             <button type="submit" class="btn btn-primary">
                 Login
             </button>
