@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 
-Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::get('articles', 'ArticleController@index');
 Route::get('articles/{id}', 'ArticleController@show')->name('show');
 
 
